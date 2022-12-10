@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Editor View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="EditorViewController" customModule="TwitterSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkx-4Y-R0Y">
+                                <rect key="frame" x="30" y="89" width="82" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="キャンセル"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbN-BT-giO">
+                                <rect key="frame" x="265" y="89" width="98" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="ツイートする"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gnu-Ft-u1f">
+                                <rect key="frame" x="30.000000000000007" y="181" width="81.666666666666686" height="19.333333333333343"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nHn-VB-cGa">
+                                <rect key="frame" x="30" y="210.33333333333334" width="333" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WUL-Wl-vCR">
+                                <rect key="frame" x="30" y="299.33333333333331" width="333" height="218.66666666666669"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="いまどうしてる？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJu-6U-Z2j">
+                                <rect key="frame" x="30" y="269.33333333333331" width="131" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="WUL-Wl-vCR" secondAttribute="trailing" constant="30" id="4Qc-S5-eC6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WUL-Wl-vCR" secondAttribute="bottom" constant="300" id="4iB-lG-O11"/>
+                            <constraint firstItem="nHn-VB-cGa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="5ct-8b-j6S"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vbN-BT-giO" secondAttribute="trailing" constant="30" id="J9B-qz-eJw"/>
+                            <constraint firstItem="vbN-BT-giO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="bqs-Vx-hfa"/>
+                            <constraint firstItem="WUL-Wl-vCR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="cdI-gD-epK"/>
+                            <constraint firstItem="hJu-6U-Z2j" firstAttribute="top" secondItem="nHn-VB-cGa" secondAttribute="bottom" constant="30" id="cqV-dX-Cy9"/>
+                            <constraint firstItem="nHn-VB-cGa" firstAttribute="top" secondItem="Gnu-Ft-u1f" secondAttribute="bottom" constant="10" id="gbM-EW-rjH"/>
+                            <constraint firstItem="WUL-Wl-vCR" firstAttribute="top" secondItem="hJu-6U-Z2j" secondAttribute="bottom" constant="10" id="hsU-Tr-fjT"/>
+                            <constraint firstItem="hJu-6U-Z2j" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="jQj-if-oOp"/>
+                            <constraint firstItem="qkx-4Y-R0Y" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="pcu-OM-sMm"/>
+                            <constraint firstItem="Gnu-Ft-u1f" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="r0H-UZ-k7q"/>
+                            <constraint firstItem="Gnu-Ft-u1f" firstAttribute="top" secondItem="qkx-4Y-R0Y" secondAttribute="bottom" constant="60" id="rux-A5-E3j"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nHn-VB-cGa" secondAttribute="trailing" constant="30" id="tO6-1x-wBK"/>
+                            <constraint firstItem="qkx-4Y-R0Y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="zd2-PP-aBX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-172" y="123"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -40,18 +40,36 @@
                                     <outlet property="delegate" destination="lkV-9J-hai" id="GF0-TD-jSv"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bF4-cE-Jei">
+                                <rect key="frame" x="323" y="748" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="IkZ-r4-bAG"/>
+                                    <constraint firstAttribute="height" constant="50" id="dCg-MT-t2k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="＋"/>
+                                <connections>
+                                    <action selector="addButton:" destination="lkV-9J-hai" eventType="touchUpInside" id="PGW-tp-MMA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lif-K0-ZqW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Lif-K0-ZqW" firstAttribute="trailing" secondItem="rwT-gc-rEB" secondAttribute="trailing" id="LaK-Wz-k1p"/>
+                            <constraint firstItem="Lif-K0-ZqW" firstAttribute="bottom" secondItem="bF4-cE-Jei" secondAttribute="bottom" constant="20" id="SEs-gN-O8c"/>
                             <constraint firstItem="Lif-K0-ZqW" firstAttribute="bottom" secondItem="rwT-gc-rEB" secondAttribute="bottom" id="dWw-8V-9dX"/>
+                            <constraint firstItem="Lif-K0-ZqW" firstAttribute="trailing" secondItem="bF4-cE-Jei" secondAttribute="trailing" constant="20" id="lse-Sd-Nyn"/>
                             <constraint firstItem="rwT-gc-rEB" firstAttribute="top" secondItem="Lif-K0-ZqW" secondAttribute="top" id="nrh-03-l5W"/>
                             <constraint firstItem="rwT-gc-rEB" firstAttribute="leading" secondItem="Lif-K0-ZqW" secondAttribute="leading" id="qSr-X8-NoT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U0U-2J-fxg"/>
                     <connections>
+                        <outlet property="addButton" destination="bF4-cE-Jei" id="0h7-jK-FIV"/>
                         <outlet property="tableView" destination="rwT-gc-rEB" id="a3f-Vd-bXW"/>
                     </connections>
                 </viewController>
@@ -63,6 +81,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

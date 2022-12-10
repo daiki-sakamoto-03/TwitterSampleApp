@@ -18,6 +18,8 @@
 		528F9AF62940AEE90037BA01 /* TwitterSampleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F9AF52940AEE90037BA01 /* TwitterSampleAppUITestsLaunchTests.swift */; };
 		528F9B04294418DE0037BA01 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F9B02294418DE0037BA01 /* MainTableViewCell.swift */; };
 		528F9B05294418DE0037BA01 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528F9B03294418DE0037BA01 /* MainTableViewCell.xib */; };
+		528F9B072944B4DC0037BA01 /* EditorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528F9B062944B4DC0037BA01 /* EditorViewController.storyboard */; };
+		528F9B092944B5210037BA01 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F9B082944B5200037BA01 /* EditorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		528F9AF52940AEE90037BA01 /* TwitterSampleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSampleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		528F9B02294418DE0037BA01 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		528F9B03294418DE0037BA01 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		528F9B062944B4DC0037BA01 /* EditorViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditorViewController.storyboard; sourceTree = "<group>"; };
+		528F9B082944B5200037BA01 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				528F9ADB2940AEE80037BA01 /* Assets.xcassets */,
 				528F9ADD2940AEE80037BA01 /* LaunchScreen.storyboard */,
 				528F9AE02940AEE80037BA01 /* Info.plist */,
+				528F9B062944B4DC0037BA01 /* EditorViewController.storyboard */,
+				528F9B082944B5200037BA01 /* EditorViewController.swift */,
 			);
 			path = TwitterSampleApp;
 			sourceTree = "<group>";
@@ -239,6 +245,7 @@
 			files = (
 				528F9ADF2940AEE80037BA01 /* LaunchScreen.storyboard in Resources */,
 				528F9ADC2940AEE80037BA01 /* Assets.xcassets in Resources */,
+				528F9B072944B4DC0037BA01 /* EditorViewController.storyboard in Resources */,
 				528F9B05294418DE0037BA01 /* MainTableViewCell.xib in Resources */,
 				528F9ADA2940AEE70037BA01 /* Main.storyboard in Resources */,
 			);
@@ -268,6 +275,7 @@
 				528F9AD72940AEE70037BA01 /* ViewController.swift in Sources */,
 				528F9AD32940AEE70037BA01 /* AppDelegate.swift in Sources */,
 				528F9B04294418DE0037BA01 /* MainTableViewCell.swift in Sources */,
+				528F9B092944B5210037BA01 /* EditorViewController.swift in Sources */,
 				528F9AD52940AEE70037BA01 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
