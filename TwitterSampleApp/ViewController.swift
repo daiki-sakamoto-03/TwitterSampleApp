@@ -36,12 +36,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // ボタンを丸くするメソッド
-    func configureButton() {
+    private func configureButton() {
         addButton.layer.cornerRadius = addButton.bounds.width / 2
     }
     
     // ＋ボタンがタップされた際のメソッド
-    func transitionToEditorView() {
+    private func transitionToEditorView() {
         let storyboard = UIStoryboard(name: "EditorViewController", bundle: nil)
         guard let editorViewController = storyboard.instantiateInitialViewController() as? EditorViewController else { return }
         present(editorViewController, animated: true)
