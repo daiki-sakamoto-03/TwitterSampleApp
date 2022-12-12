@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +16,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         transitionToEditorView()
     }
     
+    var recordList: [TweetRecord] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         navigationItem.title = "ホーム"
         configureButton()
+    }
+    
+    let tweetRecord = TweetRecord()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getRecord()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +55,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let storyboard = UIStoryboard(name: "EditorViewController", bundle: nil)
         guard let editorViewController = storyboard.instantiateInitialViewController() as? EditorViewController else { return }
         present(editorViewController, animated: true)
+    }
+    
+    func getRecord() {
+        let realm = try! Realm()
+        recordList = Array(realm.objects(TweetRecord.self))
     }
 
 
