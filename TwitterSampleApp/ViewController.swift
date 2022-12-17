@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
@@ -22,28 +22,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         navigationItem.title = "ホーム"
         configureButton()
     }
-    
-    let tweetRecord = TweetRecord()
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getRecord()
+        tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
-        cell.userName.text = "Daiki"
-        cell.tweetText.text = "このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。"
-        return cell
-    }
     
     // ボタンを丸くするメソッド
     private func configureButton() {
@@ -57,11 +48,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(editorViewController, animated: true)
     }
     
-    func getRecord() {
+    // Realmからデータを取得するメソッド
+    private func getRecord() {
         let realm = try! Realm()
         recordList = Array(realm.objects(TweetRecord.self))
     }
 
 
+}
+
+extension ViewController: UITableViewDataSource {
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recordList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
+        cell.userName.text = ""
+        cell.tweetText.text = "このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。"
+        return cell
+    }
 }
 

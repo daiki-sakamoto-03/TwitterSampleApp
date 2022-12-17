@@ -8,6 +8,10 @@
 import UIKit
 import RealmSwift
 
+protocol EditorViewControllerDelegate {
+    func recordUpdate()
+}
+
 class EditorViewController: UIViewController {
     
     @IBAction func backButtonAction(_ sender: Any) {
@@ -18,7 +22,8 @@ class EditorViewController: UIViewController {
         saveRecord()
     }
     
-    
+    var record = TweetRecord(userName: <#String#>, tweetText: <#String#>)
+    var delegate: EditorViewControllerDelegate?
     
     @IBOutlet weak var inputUserNameTextField: UITextField!
     @IBOutlet weak var inputTweetTextField: UITextField!
@@ -28,12 +33,9 @@ class EditorViewController: UIViewController {
         configureUserNameTextField()
         configureTweetTextField()
         let realm = try! Realm()
-        let firstRecord = realm.objects(TweetRecord.self).first
-        print("👀firstRecord: \(String(describing: firstRecord))")
+
     }
-    
-    var record = TweetRecord()
-    
+        
     @objc func didTapDone() {
         view.endEditing(true)
     }
@@ -63,13 +65,14 @@ class EditorViewController: UIViewController {
                 record.userName = user
             }
             if let tweetText = inputTweetTextField.text {
-                record.tweet = tweetText
+                record.tweetText = tweetText
             }
             realm.add(record)
         }
+        delegate?.recordUpdate()
         dismiss(animated: true)
     }
-    
+            
 }
 
 

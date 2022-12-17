@@ -8,11 +8,12 @@
 import Foundation
 import RealmSwift
 
-class TweetRecord: Object {
-    override static func primaryKey() -> String? {
-        return "id"
+class TweetRecord: NSObject {
+    var userName: String
+    var tweetText: String
+    
+    init(userName: String, tweetText: String) {
+        self.userName = userName as String
+        self.tweetText = tweetText as String
     }
-    @objc dynamic var id: String = UUID().uuidString
-    @objc dynamic var userName: String = "ユーザー名"
-    @objc dynamic var tweet: String = "いまどうしてる？"
 }
