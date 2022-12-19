@@ -22,7 +22,7 @@ class EditorViewController: UIViewController {
         saveRecord()
     }
     
-    var record = TweetRecord(userName: <#String#>, tweetText: <#String#>)
+    var record = TweetRecord()
     var delegate: EditorViewControllerDelegate?
     
     @IBOutlet weak var inputUserNameTextField: UITextField!
@@ -33,7 +33,6 @@ class EditorViewController: UIViewController {
         configureUserNameTextField()
         configureTweetTextField()
         let realm = try! Realm()
-
     }
         
     @objc func didTapDone() {
