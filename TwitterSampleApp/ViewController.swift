@@ -22,19 +22,20 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         navigationItem.title = "ホーム"
         configureButton()
-    }
+       
+        }
+    
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getRecord()
         tableView.reloadData()
     }
-    
-    
     
     // ボタンを丸くするメソッド
     private func configureButton() {
@@ -65,8 +66,6 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
-        cell.userName.text = ""
-        cell.tweetText.text = "このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。このテキストが改行するかのテストをしたいので、長文を入力してみます。"
         return cell
     }
 }

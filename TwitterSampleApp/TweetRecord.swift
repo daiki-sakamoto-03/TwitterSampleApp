@@ -15,9 +15,6 @@ class TweetRecord: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var userName = ""
     @objc dynamic var tweetText = ""
+
     
-    init(userName: String, tweetText: String) {
-        self.userName = userName as String
-        self.tweetText = tweetText as String
-    }
 }

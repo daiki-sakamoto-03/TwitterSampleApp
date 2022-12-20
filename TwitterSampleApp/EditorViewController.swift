@@ -19,6 +19,11 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func tweetButton(_ sender: UIButton) {
+        // TweetRecordクラスをインスタンス化して、
+        let record = TweetRecord()
+        // TextFieldに入力された値をTweetRecordに代入する
+        record.userName = inputUserNameTextField.text!
+        record.tweetText = inputTweetTextField.text!
         saveRecord()
     }
     
