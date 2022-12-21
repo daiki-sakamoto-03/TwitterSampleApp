@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setTweetData()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
@@ -34,7 +35,15 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getRecord()
+        
         tableView.reloadData()
+    }
+    // TweetRecordにツイートのデータを格納するメソッド
+    func setTweetData() {
+        for i in 1...5 {
+            let recordListModel = TweetRecord()
+            recordList.append(recordListModel)
+        }
     }
     
     // ボタンを丸くするメソッド
@@ -65,8 +74,20 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
+        let cell = UITableViewCell()
+        let tweetRecord: TweetRecord = recordList[indexPath.row]
+        cell.textLabel?.text = tweetRecord.userName
+        cell.textLabel?.text = tweetRecord.tweetText
         return cell
     }
 }
 
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "main", bundle: nil)
+        let editorViewController = storyboard.instantiateViewController(identifier: "EditorViewController") as! EditorViewController
+        let tweetData = recordList[indexPath.row]
+        editorViewController.configure(tweet: tweetData)
+    }
+}

@@ -27,6 +27,20 @@ class EditorViewController: UIViewController {
         saveRecord()
     }
     
+    var userName: String = ""
+    var tweetText: String = ""
+    
+    func displayData() {
+        inputUserNameTextField.text = userName
+        inputTweetTextField.text = tweetText
+    }
+    
+    func configure(tweet: TweetRecord) {
+        userName = tweet.userName
+        tweetText = tweet.tweetText
+        print("データは\(userName)と\(tweetText)です！")
+    }
+    
     var record = TweetRecord()
     var delegate: EditorViewControllerDelegate?
     
@@ -35,6 +49,7 @@ class EditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayData()
         configureUserNameTextField()
         configureTweetTextField()
         let realm = try! Realm()
