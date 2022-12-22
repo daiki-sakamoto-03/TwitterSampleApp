@@ -14,34 +14,33 @@ protocol EditorViewControllerDelegate {
 
 class EditorViewController: UIViewController {
     
+    var tweetData = TweetRecord()
+
+    
     @IBAction func backButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tweetButton(_ sender: UIButton) {
-        // TweetRecordクラスをインスタンス化して、
-        let record = TweetRecord()
+        
         // TextFieldに入力された値をTweetRecordに代入する
-        record.userName = inputUserNameTextField.text!
-        record.tweetText = inputTweetTextField.text!
+        tweetData.userName = inputUserNameTextField.text!
+        tweetData.tweetText = inputTweetTextField.text!
         saveRecord()
     }
     
-    var userName: String = ""
-    var tweetText: String = ""
     
     func displayData() {
-        inputUserNameTextField.text = userName
-        inputTweetTextField.text = tweetText
+        inputUserNameTextField.text = tweetData.userName
+        inputTweetTextField.text = tweetData.tweetText
     }
     
+    // EditorViewControllerにツイートデータを渡すメソッド
     func configure(tweet: TweetRecord) {
-        userName = tweet.userName
-        tweetText = tweet.tweetText
-        print("データは\(userName)と\(tweetText)です！")
+        tweetData.userName = tweet.userName
+        tweetData.tweetText = tweet.tweetText
     }
     
-    var record = TweetRecord()
     var delegate: EditorViewControllerDelegate?
     
     @IBOutlet weak var inputUserNameTextField: UITextField!
@@ -81,15 +80,16 @@ class EditorViewController: UIViewController {
         let realm = try! Realm()
         try! realm.write {
             if let user = inputUserNameTextField.text {
-                record.userName = user
+                tweetData.userName = user
             }
             if let tweetText = inputTweetTextField.text {
-                record.tweetText = tweetText
+                tweetData.tweetText = tweetText
             }
-            realm.add(record)
+            realm.add(tweetData)
         }
         delegate?.recordUpdate()
         dismiss(animated: true)
+        print("userName: \(tweetData.userName), tweetText: \(tweetData.tweetText)")
     }
             
 }

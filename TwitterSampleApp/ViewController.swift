@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setTweetData()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
@@ -34,16 +33,14 @@ class ViewController: UIViewController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getRecord()
-        
+        setTweetData()
         tableView.reloadData()
     }
     // TweetRecordにツイートのデータを格納するメソッド
     func setTweetData() {
-        for i in 1...5 {
-            let recordListModel = TweetRecord()
-            recordList.append(recordListModel)
-        }
+        let realm = try! Realm()
+        let result = realm.objects(TweetRecord.self)
+        recordList = Array(result)
     }
     
     // ボタンを丸くするメソッド
@@ -57,27 +54,20 @@ class ViewController: UIViewController {
         guard let editorViewController = storyboard.instantiateInitialViewController() as? EditorViewController else { return }
         present(editorViewController, animated: true)
     }
-    
-    // Realmからデータを取得するメソッド
-    private func getRecord() {
-        let realm = try! Realm()
-        recordList = Array(realm.objects(TweetRecord.self))
-    }
-
 
 }
 
 extension ViewController: UITableViewDataSource {
-        
+            
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
         let tweetRecord: TweetRecord = recordList[indexPath.row]
-        cell.textLabel?.text = tweetRecord.userName
-        cell.textLabel?.text = tweetRecord.tweetText
+        cell.userName.text = tweetRecord.userName
+        cell.tweetText.text = tweetRecord.tweetText
         return cell
     }
 }
@@ -87,6 +77,8 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "main", bundle: nil)
         let editorViewController = storyboard.instantiateViewController(identifier: "EditorViewController") as! EditorViewController
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigationController?.pushViewController(editorViewController, animated: true)
         let tweetData = recordList[indexPath.row]
         editorViewController.configure(tweet: tweetData)
     }
