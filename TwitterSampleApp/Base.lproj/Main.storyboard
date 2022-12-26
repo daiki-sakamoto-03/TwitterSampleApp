@@ -27,7 +27,7 @@
         <!--View Controller-->
         <scene sceneID="YDL-7n-0In">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="lkV-9J-hai" customClass="ViewController" customModule="TwitterSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditorViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lkV-9J-hai" customClass="ViewController" customModule="TwitterSampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MFk-bq-Jbq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

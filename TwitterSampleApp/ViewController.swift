@@ -72,14 +72,16 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-
+// ツイートの削除機能追加
 extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "main", bundle: nil)
-        let editorViewController = storyboard.instantiateViewController(identifier: "EditorViewController") as! EditorViewController
-        tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(editorViewController, animated: true)
-        let tweetData = recordList[indexPath.row]
-        editorViewController.configure(tweet: tweetData)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let targetTweet = recordList[indexPath.row]
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(targetTweet)
+        }
+        recordList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
+

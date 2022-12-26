@@ -16,17 +16,23 @@ class EditorViewController: UIViewController {
     
     var tweetData = TweetRecord()
 
-    
-    @IBAction func backButtonAction(_ sender: Any) {
+    @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func tweetButton(_ sender: UIButton) {
         
+    @IBAction func tweetButton(_ sender: UIButton) {
         // TextFieldに入力された値をTweetRecordに代入する
         tweetData.userName = inputUserNameTextField.text!
         tweetData.tweetText = inputTweetTextField.text!
         saveRecord()
+        
+        // もしuserName,tweettextのどちらかが空だった場合、エラーを表示する
+        // UIAlertViewControllerの実装はまた今度！
+        if tweetData.userName.isEmpty {
+            print("ユーザー名が入力されていません！")
+        } else if tweetData.tweetText.isEmpty {
+            print("ツイート文が入力されていません！")
+        } 
     }
     
     
@@ -45,12 +51,15 @@ class EditorViewController: UIViewController {
     
     @IBOutlet weak var inputUserNameTextField: UITextField!
     @IBOutlet weak var inputTweetTextField: UITextField!
+    // 文字数制限140字
+    private let maxTweetLength = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayData()
         configureUserNameTextField()
         configureTweetTextField()
+        inputTweetTextField.delegate = self
         let realm = try! Realm()
     }
         
@@ -91,7 +100,16 @@ class EditorViewController: UIViewController {
         dismiss(animated: true)
         print("userName: \(tweetData.userName), tweetText: \(tweetData.tweetText)")
     }
-            
 }
 
+// ツイートに文字数制限を設ける
+extension EditorViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let tweet = inputTweetTextField.text else { return }
+        
+        if tweet.count > maxTweetLength {
+            inputTweetTextField.text = String(tweet.prefix(maxTweetLength))
+        }
+    }
+}
 
