@@ -52,7 +52,7 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var inputUserNameTextField: UITextField!
     @IBOutlet weak var inputTweetTextField: UITextField!
     // 文字数制限140字
-    private let maxTweetLength = 140
+    let maxTweetLength = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
