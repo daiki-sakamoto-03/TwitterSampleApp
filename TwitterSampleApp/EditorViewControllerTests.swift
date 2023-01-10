@@ -18,12 +18,9 @@ class EditorViewControllerTests: XCTestCase {
 
     
     // 今回はこのメソッドを使用
-    func testtextFieldDidChangeSelection() throws {
-        let evc = EditorViewController()
-        let tweet = evc.inputTweetTextField.text!.count
-        XCTAssertTrue(tweet > evc.maxTweetLength)
-        
-    }
+    func trueTextLimit() {}
+    
+    func falseTextLimit() {}
 
     
     

@@ -15,16 +15,16 @@ protocol EditorViewControllerDelegate {
 class EditorViewController: UIViewController {
     
     var tweetData = TweetRecord()
-
+    
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-        
+    
     @IBAction func tweetButton(_ sender: UIButton) {
         // TextFieldに入力された値をTweetRecordに代入する
         tweetData.userName = inputUserNameTextField.text!
         tweetData.tweetText = inputTweetTextField.text!
-        saveRecord()
+        saveRecord(with: inputUserNameTextField.text ?? "", with: inputTweetTextField.text!)
         
         // もしuserName,tweettextのどちらかが空だった場合、エラーを表示する
         // UIAlertViewControllerの実装はまた今度！
@@ -32,7 +32,7 @@ class EditorViewController: UIViewController {
             print("ユーザー名が入力されていません！")
         } else if tweetData.tweetText.isEmpty {
             print("ツイート文が入力されていません！")
-        } 
+        }
     }
     
     
@@ -62,7 +62,7 @@ class EditorViewController: UIViewController {
         inputTweetTextField.delegate = self
         let realm = try! Realm()
     }
-        
+    
     @objc func didTapDone() {
         view.endEditing(true)
     }
@@ -84,31 +84,22 @@ class EditorViewController: UIViewController {
         inputTweetTextField.inputAccessoryView = toolBar
     }
     
-    // Realmを使用して、ユーザー名・ツイート内容を保存するメソッド
-    func saveRecord() {
-        let realm = try! Realm()
-        try! realm.write {
-            if let user = inputUserNameTextField.text {
-                tweetData.userName = user
-            }
-            if let tweetText = inputTweetTextField.text {
-                tweetData.tweetText = tweetText
-            }
-            realm.add(tweetData)
-        }
-        delegate?.recordUpdate()
-        dismiss(animated: true)
-        print("userName: \(tweetData.userName), tweetText: \(tweetData.tweetText)")
-    }
 }
-
-// ツイートに文字数制限を設ける
+    
+    // Realmを使用して、ユーザー名・ツイート内容を保存かつ、文字数を制限するメソッド
 extension EditorViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let tweet = inputTweetTextField.text else { return }
-        
-        if tweet.count > maxTweetLength {
-            inputTweetTextField.text = String(tweet.prefix(maxTweetLength))
+    func saveRecord(with name: String, with text: String) {
+        let realm = try! Realm()
+        guard let tweetTextCount = inputTweetTextField.text?.count else { return }
+        if tweetTextCount > maxTweetLength {
+            print("文字数制限を超えた為、ツイートすることが出来ません！")
+            dismiss(animated: true, completion: nil)
+        } else {
+            try! realm.write {
+                tweetData.userName = name
+                tweetData.tweetText = text
+                realm.add(tweetData)
+            }
         }
     }
 }
