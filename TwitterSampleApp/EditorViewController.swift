@@ -99,8 +99,10 @@ extension EditorViewController: UITextFieldDelegate {
                 tweetData.userName = name
                 tweetData.tweetText = text
                 realm.add(tweetData)
+                dismiss(animated: true, completion: nil)
             }
         }
     }
+    
 }
 
