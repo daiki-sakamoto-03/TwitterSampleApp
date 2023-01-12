@@ -51,16 +51,12 @@ class EditorViewController: UIViewController {
     
     @IBOutlet weak var inputUserNameTextField: UITextField!
     @IBOutlet weak var inputTweetTextField: UITextField!
-    // 文字数制限140字
-    let maxTweetLength = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayData()
         configureUserNameTextField()
         configureTweetTextField()
-        inputTweetTextField.delegate = self
-        let realm = try! Realm()
     }
     
     @objc func didTapDone() {
@@ -87,21 +83,33 @@ class EditorViewController: UIViewController {
 }
     
     // Realmを使用して、ユーザー名・ツイート内容を保存かつ、文字数を制限するメソッド
-extension EditorViewController: UITextFieldDelegate {
+extension EditorViewController {
     func saveRecord(with name: String, with text: String) {
-        let realm = try! Realm()
         guard let tweetTextCount = inputTweetTextField.text?.count else { return }
-        if tweetTextCount > maxTweetLength {
-            print("文字数制限を超えた為、ツイートすることが出来ません！")
-            dismiss(animated: true, completion: nil)
-        } else {
+        // ツイートのカウントをチェックする
+        let isSaved = checkTweetTextCount(count: tweetTextCount)
+        // isSavedがtrueならrealmに保存する
+        if isSaved {
+            let realm = try! Realm()
             try! realm.write {
                 tweetData.userName = name
                 tweetData.tweetText = text
                 realm.add(tweetData)
                 dismiss(animated: true, completion: nil)
             }
+        } else {
+            print("文字数制限を超えた為、ツイートすることが出来ません！")
+            dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // テキストカウントをチェックする
+    func checkTweetTextCount(count: Int) -> Bool {
+        // 文字数制限140字
+        let maxTweetLength = 140
+        // ツイート可能かどうかの判定
+        let isTweetable = count < maxTweetLength
+        return isTweetable
     }
     
 }

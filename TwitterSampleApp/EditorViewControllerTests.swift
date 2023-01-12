@@ -18,14 +18,11 @@ class EditorViewControllerTests: XCTestCase {
 
     
     // 今回はこのメソッドを使用
-    func trueTextLimit() {
+    func testtrueTextLimit() throws {
         let evc = EditorViewController()
-        let str: String = evc.inputTweetTextField
-        let number = evc.saveRecord(with: <#T##String#>, with: <#T##String#>)
+        let number = evc.checkTweetTextCount(count: 140)
+        XCTAssertTrue(number)
     }
-    
-    func falseTextLimit() {}
-
     
     
     
