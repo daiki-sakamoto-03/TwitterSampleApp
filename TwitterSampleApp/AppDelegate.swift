@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  TwitterSampleApp
 //
-//  Created by 坂本　大貴 on 2022/12/07.
+//  Created by  on 2022/12/07.
 //
 
 import UIKit
