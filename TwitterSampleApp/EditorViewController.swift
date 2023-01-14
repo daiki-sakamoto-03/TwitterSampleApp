@@ -108,7 +108,7 @@ extension EditorViewController {
         // 文字数制限140字
         let maxTweetLength = 140
         // ツイート可能かどうかの判定
-        let isTweetable = count < maxTweetLength
+        let isTweetable = count <= maxTweetLength
         return isTweetable
     }
     
